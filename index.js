@@ -6,12 +6,12 @@ const port = 3000
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-app.get('/', (req, res) => {
+app.get('/check', (req, res) => {
     console.log(req.body);
     res.status(200).send({ success: true })
 });
 
-app.post('/', (req, res) => {
+app.post('/check', (req, res) => {
     console.log(req.body);
     res.status(200).send({ success: true })
 });
