@@ -11,19 +11,25 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.get('/check', (req, res) => {
     console.log("Query:");
     console.log(req.query);
-    console.log(req.query.hub_challenge);
+    const jsonQuery = Object.entries(req.query).reduce((x,[k,v]) => (x[toSnake(k)]=v) && x, {})
+    console.log(jsonQuery.hub_challenge);
     console.log("Body:");
     console.log(req.body);
-    res.status(200).send(req.query.hub_challenge)
+    res.status(200).send(jsonQuery.hub_challenge)
 });
 
 app.post('/check', (req, res) => {
     console.log("Query:");
     console.log(req.query);
+    const jsonQuery = Object.entries(req.query).reduce((x,[k,v]) => (x[toSnake(k)]=v) && x, {})
+    console.log(jsonQuery.hub_challenge);
     console.log("Body:");
     console.log(req.body);
-    res.status(200).send(req.query.hub_challenge)
+    res.status(200).send(jsonQuery.hub_challenge)
 });
+
+
+const toSnake = s => s.replace(".", "_")
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
