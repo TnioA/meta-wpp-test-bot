@@ -11,9 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.get('/check', (req, res) => {
     console.log("Query:");
     console.log(req.query);
+    console.log(req.query.hub_challenge);
     console.log("Body:");
     console.log(req.body);
-    res.status(200).send({ success: true })
+    res.status(200).send(req.query.hub_challenge)
 });
 
 app.post('/check', (req, res) => {
@@ -21,7 +22,7 @@ app.post('/check', (req, res) => {
     console.log(req.query);
     console.log("Body:");
     console.log(req.body);
-    res.status(200).send({ success: true })
+    res.status(200).send(req.query.hub_challenge)
 });
 
 app.listen(port, () => {
